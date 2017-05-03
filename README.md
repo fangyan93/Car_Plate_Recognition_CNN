@@ -9,3 +9,7 @@ For OpenCV, installation on Ubuntu and Mac OS X is easy, one line command should
 To test its performance, first activate the environment in which Tensorflow and OpenCV are installed, for a single image, you can modify the file name at the top of Main.py file, and run python Main.py, for multiple images, you may put all of them into a folder, then specify the folder path at the top of test.py file, and run python test.py. The convolutional neural network model is saved in 3 file whose name starts with my_model and the checkpoint file, it will be used in recognition. 
 
 Also, a Pi camera was used to do some practical test in real time, I used motion to capture images, and test my code on them. To install motion in Raspbian on Raspberry Pi, this [link](http://sjj.azurewebsites.net/?p=701) is helpful.
+
+Thanks for the help from Chris Dahms's open source project on car plate recognition using K-nearest neighbors, the image processing part is mainly followed by Chris' idea.
+
+Actually, kNN is also efficient for some very clear image with fair accuracy. My model can obtain a better accuracy, but the run time is a bit longer than KNN with a small number of training data.

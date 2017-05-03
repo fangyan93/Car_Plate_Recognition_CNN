@@ -13,3 +13,5 @@ Also, a Pi camera was used to do some practical test in real time, I used motion
 Thanks for the help from Chris Dahms's open source project on car plate recognition using K-nearest neighbors, the image processing part is mainly followed by Chris' idea.
 
 Actually, kNN is also efficient for some very clear image with fair accuracy. My model can obtain a better accuracy, but the run time is a bit longer than KNN with a small number of training data.
+
+Two sample training data and label for training by run cnn.py file is put data folder. A demo video is at [here]{https://www.youtube.com/watch?v=hybLwMGWoSU}

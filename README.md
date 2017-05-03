@@ -14,4 +14,4 @@ Thanks for the help from Chris Dahms's open source project on car plate recognit
 
 Actually, kNN is also efficient for some very clear image with fair accuracy. My model can obtain a better accuracy, but the run time is a bit longer than KNN with a small number of training data.
 
-Two sample training data and label for training by run cnn.py file is put data folder. A demo video is at [here]{https://www.youtube.com/watch?v=hybLwMGWoSU}
+Two sample training data and label for training by run cnn.py file is put data folder. A demo video is at [here](https://www.youtube.com/watch?v=hybLwMGWoSU)

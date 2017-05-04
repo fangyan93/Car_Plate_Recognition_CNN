@@ -12,8 +12,6 @@ import PossibleChar
 import recog_char
 # module level variables ##########################################################################
 
-kNearest = cv2.ml.KNearest_create()
-
         # constants for checkIfPossibleChar, this checks one possible char only (does not compare to another char)
 MIN_PIXEL_WIDTH = 2
 MIN_PIXEL_HEIGHT = 8
@@ -433,7 +431,7 @@ def recognizeCharsInPlate(imgThresh, listOfMatchingChars):
     listOfMatchingChars.sort(key = lambda matchingChar: matchingChar.intCenterX)        # sort chars from left to right
 
     cv2.cvtColor(imgThresh, cv2.COLOR_GRAY2BGR, imgThreshColor)                     # make color version of threshold image so we can draw contours in color on it
-
+    # load CNN model
     sess = tf.Session()
     load_model(sess, "my_model.meta", "my_model.data-00000-of-00001")
     all_var = tf.get_collection('validation_nodes')
@@ -453,23 +451,15 @@ def recognizeCharsInPlate(imgThresh, listOfMatchingChars):
                            currentChar.intBoundingRectX : currentChar.intBoundingRectX + currentChar.intBoundingRectWidth]
 
         imgROIResized = cv2.resize(imgROI, (RESIZED_CHAR_IMAGE_WIDTH, RESIZED_CHAR_IMAGE_HEIGHT))           # resize image, this is necessary for char recognition
-        # run model here
-        # do not resize to 1 row vector
         npaROIResized = imgROIResized.reshape((1, RESIZED_CHAR_IMAGE_WIDTH * RESIZED_CHAR_IMAGE_HEIGHT))        # flatten image into 1d numpy array
 
         npaROIResized = np.float32(npaROIResized)               # convert from 1d numpy array of ints to 1d numpy array of floats
-        # run model here
-        # do not resize to 1 row vector
-        # print(npaROIResized.shape)
+        # run the model 
         x = np.reshape(npaROIResized, [1, 20, 30])
         x = np.expand_dims(x,3)
         label = sess.run(all_var[1], feed_dict={all_var[0]:x})
-        # print(label)
         char = str(chr(int(classToChar[label[0]]))) 
-        # print(char)
-        #retval, npaResults, neigh_resp, dists = kNearest.findNearest(npaROIResized, k = 1)              # finally we can call findNearest !!!
 
-        #strCurrentChar = str(chr(int(npaResults[0][0])))            # get character from results
         strCurrentChar = char
         strChars = strChars + strCurrentChar                        # append current char to full string
 
